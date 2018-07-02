@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm Booking</title>
+<% include commonHeadElements.html %>
+
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+<script type="text/javascript">
+	function getFormFilled(){
+		
+		document.getElementById('username').value=document.getElementById('name').value;
+		document.getElementById('mobile').value=document.getElementById('mnos').value;
+		document.getElementById('usrmail').value=document.getElementById('mail').value;
+		document.getElementById('usraddress').value=document.getElementById('address').value;
+		
+	}
+</script>
+
+</head>
+<body>
+<% include header.html %>
+<div style="margin-right: 5%;margin-left: 5%">
+<div class="container-booking">
+
+<% if(!currentUser){ %>
+	<p class="font-warning"> Sorry !!! You are not logged in. </p>
+	<% } else { %>
+	
+	<h1 class="font-1">Confirm Booking</h1>
+	<form method="post" action="/confirmmybooking" data-toggle="validator">
+	<h3 class="font-1">Details of Who is Booking :</h3>
+	<% if(currentUser && currentUser.rolename=='owner' && currentUser.uid==bookings[0].uid){ %>
+
+	<div class="row">
+		<div class="col-md-4">
+			<span class="card-area-heading">Name :</span>
+			<input type="text" name="name" id="name" placeholder="Name of person" class="form-control" required>
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading">Mobile :</span>
+			<input type="tel" name="mno" id="mnos" placeholder="Contact number of person" class="form-control" maxlength=10 required>
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading">E-mail :</span>
+			<input type="email" name="mail" id="mail" placeholder="E-mail ID of person" class="form-control" required>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-6">
+			<span class="card-area-heading">Address :</span>
+			<textarea class="form-control" rows="4" id="address"></textarea>
+		</div>
+	</div>
+	<% } else if((currentUser && currentUser.rolename=='customer')||(currentUser && currentUser.rolename=='owner' && currentUser.uid!=bookings[0].uid)){ %>
+		
+		<div class="card">
+			<div class="card-area hold">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Name :</span>
+						<span class="card-area-font"><%= currentUser.name %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Mobile :</span>
+						<span class="card-area-font"><%= currentUser.mno %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">E-mail:</span>
+						<span class="card-area-font"><%= currentUser.mail %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<span class="card-area-heading">Address :</span>
+						<span class="card-area-font"><%= currentUser.useraddress %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% } %>
+	<h3 class="font-1">Details of the Resort :</h3>
+	
+		<div class="card">
+			<div class="card-area hold">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Resort Name :</span>
+						<span class="card-area-font"><%= bookings[0].rname %></span>
+					</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Hall Name :</span>
+						<span class="card-area-font"><%= bookings[0].hname %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">City :</span>
+						<span class="card-area-font"><%= bookings[0].loc %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Capacity :</span>
+						<span class="card-area-font"><%= bookings[0].capacity %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Price of Deal :</span>
+						<span class="card-area-font"><%= bookings[0].cost %></span>
+					</div>
+				</div>
+			</div>
+		</div> 
+	<h3 class="font-1">Booking details :</h3>
+		<div class="card">
+			<div class="card-area confirm">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="card-area-heading">Event starts at:</span>
+						<span class="card-area-font"><%= date %> <%= startTime %></span>
+					</div>
+					<div class="col-md-6">
+						<span class="card-area-heading">Event ends at:</span>
+						<span class="card-area-font"><%= date %> <%= endTime %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<br>
+	</form>
+	<div class="row">
+	<div class="col-md-3 col-ms-3 col-xs-3"></div>
+		<div class="col-md-3 col-ms-3 col-xs-3">
+		<form method="post" action="/app/doBooking/book">
+		<% if((currentUser && currentUser.rolename=='customer')||(currentUser && currentUser.rolename=='owner' && currentUser.uid!=bookings[0].uid)){ %>
+
+		<input type="hidden" name="username" value="<%= currentUser.name %>">
+		<input type="hidden" name="mobile" value="<%= currentUser.mno %>">
+		<input type="hidden" name="usrmail" value="<%= currentUser.mail %>">
+		<textarea class="form-control" rows="3" style="display:none" name="usraddress" value="<%= currentUser.address %>"></textarea>
+		<% }else{ %>
+		<input type="hidden" name="username" id="username">
+		<input type="hidden" name="mobile" id="mobile">
+		<input type="hidden" name="usrmail" id="usrmail">
+		<textarea class="form-control" rows="3" style="display:none" name="usraddress" id="usraddress"></textarea>
+		<% } %>
+		
+		<input type="hidden" name="rid" id="rid" value="<%= bookings[0].rid %>">
+		<input type="hidden" name="hallid" id="hallid" value="<%= bookings[0].hallid %>">
+		<input type="hidden" name="loc" id="loc" value="<%= bookings[0].loc %>">
+		<input type="hidden" name="capacity" id="capacity" value="<%= bookings[0].capacity %>">
+		<input type="hidden" name="cost" id="cost" value="<%= bookings[0].cost %>">
+		<input type="hidden" name="date" id="usrdate" value="<%= date %>">
+		<input type="hidden" name="startTime" id="startTime" value="<%= startTime %>">
+		<input type="hidden" name="endTime" id="endTime" value="<%= endTime %>">
+		<% if(currentUser && currentUser.rolename=='owner' && currentUser.uid==bookings[0].uid){ %>
+			<button class="form-control btn btn-success" type="submit" onclick="getFormFilled()">Book</button>
+			<% }else{ %>
+			<button class="form-control btn btn-success" type="submit">Book</button>
+			<% } %>
+			
+			</form>
+		</div>
+		
+		<div class="col-md-3 col-ms-3 col-xs-3">
+		<form action="/app/home">
+			<button class="form-control btn btn-danger" type="submit" >Cancel</button>
+			</form>
+		</div>
+		<div class="col-md-3 col-ms-3 col-xs-3"></div>
+	</div>
+		
+	</div>
+	</div>
+	<% } %>
+	<% include footer.html %>
+</body>
+</html>
+<!--
+resort details: resort name, location, hall selected, capacity, cost
+
+booking details: func dates and timings,

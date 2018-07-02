@@ -1,0 +1,194 @@
+mysql> show tables;
++--------------------+
+| Tables_in_eventcal |
++--------------------+
+| hall               |
+| hallbooking        |
+| media              |
+| resort             |
+| role               |
+| user               |
+| userrole           |
++--------------------+
+7 rows in set (0.04 sec)
+
+mysql> desc user;
++-----------+-------------+------+-----+-------------------+-----------------------------+
+| Field     | Type        | Null | Key | Default           | Extra                       |
++-----------+-------------+------+-----+-------------------+-----------------------------+
+| uid       | int(10)     | NO   | PRI | NULL              | auto_increment              |
+| name      | varchar(15) | YES  |     | NULL              |                             |
+| mno       | bigint(15)  | YES  |     | NULL              |                             |
+| mail      | varchar(20) | YES  | UNI | NULL              |                             |
+| address   | varchar(50) | YES  |     | NULL              |                             |
+| password  | varchar(20) | YES  |     | NULL              |                             |
+| timestamp | timestamp   | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| city      | varchar(20) | YES  |     | NULL              |                             |
++-----------+-------------+------+-----+-------------------+-----------------------------+
+8 rows in set (0.05 sec)
+
+mysql> select * from user;
++-----+-----------------+------------+----------------------+----------------+---------------+---------------------+----------------+
+| uid | name            | mno        | mail                 | address        | password      | timestamp           | city           |
++-----+-----------------+------------+----------------------+----------------+---------------+---------------------+----------------+
+|   1 | divyansh        |  987654321 | divyansh@gmail.com   | NULL           | meranamhochi  | 2017-06-30 11:16:02 | mathura        |
+|   2 | prashant        |       NULL | prashant@gmail.com   | NULL           | meranampintu  | 2017-06-30 11:16:02 | mathura        |
+|   3 | Nimesh          |       NULL | nimesh@gmail.com     | NULL           | meranamnimesh | 2017-06-30 11:16:02 | mathura        |
+|   4 | pratishtha      |       NULL | pratishtha@gmail.com | NULL           | meranampari   | 2017-06-30 11:16:02 | mathura        |
+|   5 | Harshita        |       NULL | harshita@gmail.com   | NULL           | meranampogo   | 2017-06-30 11:16:02 | mathura        |
+|  15 | Vishakha Patnam | 7845982365 | vishakha@yahoo.co.in | vishakhapatnam | yahooo        | 2017-07-01 21:16:03 | vishakhapatnam |
++-----+-----------------+------------+----------------------+----------------+---------------+---------------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> desc role;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| roleid   | int(10)     | NO   | PRI | NULL    | auto_increment |
+| rolename | varchar(10) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from role;
++--------+----------+
+| roleid | rolename |
++--------+----------+
+|      1 | customer |
+|      2 | owner    |
+|      3 | admin    |
++--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> desc userrole;
++--------+---------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++--------+---------+------+-----+---------+-------+
+| roleid | int(10) | NO   |     | NULL    |       |
+| uid    | int(10) | NO   | MUL | NULL    |       |
++--------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from userrole;
++--------+-----+
+| roleid | uid |
++--------+-----+
+|      2 |   1 |
+|      2 |   4 |
+|      1 |   2 |
+|      1 |   3 |
+|      1 |   5 |
+|      1 |  15 |
++--------+-----+
+6 rows in set (0.00 sec)
+
+mysql> desc resort;
++------------+--------------+------+-----+-------------------+-----------------------------+
+| Field      | Type         | Null | Key | Default           | Extra                       |
++------------+--------------+------+-----+-------------------+-----------------------------+
+| rid        | int(10)      | NO   | PRI | NULL              | auto_increment              |
+| rname      | varchar(20)  | YES  |     | NULL              |                             |
+| loc        | varchar(20)  | YES  |     | NULL              |                             |
+| nhalls     | int(10)      | YES  |     | NULL              |                             |
+| ctimestamp | timestamp    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| uid        | int(10)      | NO   | MUL | NULL              |                             |
+| address    | varchar(100) | YES  |     | NULL              |                             |
+| rating     | int(5)       | YES  |     | NULL              |                             |
+| ac         | tinyint(1)   | YES  |     | NULL              |                             |
+| parking    | tinyint(1)   | YES  |     | NULL              |                             |
++------------+--------------+------+-----+-------------------+-----------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from resort;
++-----+-------------------+---------+--------+---------------------+-----+----------------------------------+--------+------+---------+
+| rid | rname             | loc     | nhalls | ctimestamp          | uid | address                          | rating | ac   | parking |
++-----+-------------------+---------+--------+---------------------+-----+----------------------------------+--------+------+---------+
+|   1 | Hochi Resorts     | Mathura |      2 | 2017-07-04 12:04:07 |   1 | choumuha                         |      2 |    1 |    NULL |
+|   2 | dream Destination | Mathura |      1 | 2017-07-04 12:04:27 |   4 | Krishnanagar                     |      3 | NULL |       1 |
+|   3 | Mera Mann Resort  | Lucknow |      3 | 2017-07-04 12:04:27 |   4 | N-252,Aashiyana Colony, Lucknow  |      5 |    1 |       1 |
++-----+-------------------+---------+--------+---------------------+-----+----------------------------------+--------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> desc hall;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| hallid   | int(10)     | NO   | PRI | NULL    | auto_increment |
+| rid      | int(10)     | NO   | MUL | NULL    |                |
+| hname    | varchar(20) | YES  |     | NULL    |                |
+| capacity | int(5)      | YES  |     | NULL    |                |
+| cost     | int(6)      | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from hall;
++--------+-----+------------+----------+--------+
+| hallid | rid | hname      | capacity | cost   |
++--------+-----+------------+----------+--------+
+|      1 |   1 | Hall1      |      500 |  15000 |
+|      2 |   1 | Hall2      |      800 |  30000 |
+|      3 |   2 | Hall1      |     1800 | 300000 |
+|      4 |   3 | maheshmati |     1500 |  30000 |
+|      5 |   3 | Kattappa   |     1500 |  30000 |
+|      6 |   3 | Kattappa   |     1500 |  30000 |
+|      7 |   3 | bahubali   |     1500 |  30000 |
++--------+-----+------------+----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> desc hallbooking;
++-------------+------------+------+-----+-------------------+-----------------------------+
+| Field       | Type       | Null | Key | Default           | Extra                       |
++-------------+------------+------+-----+-------------------+-----------------------------+
+| uid         | int(10)    | NO   | MUL | NULL              |                             |
+| hallid      | int(10)    | NO   | MUL | NULL              |                             |
+| hold        | tinyint(1) | YES  |     | NULL              |                             |
+| cancel      | tinyint(1) | YES  |     | NULL              |                             |
+| timestamp   | timestamp  | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| expirydate  | datetime   | YES  |     | NULL              |                             |
+| funcstart   | datetime   | YES  |     | NULL              |                             |
+| funcenddate | datetime   | YES  |     | NULL              |                             |
+| counttowait | int(10)    | YES  |     | NULL              |                             |
+| bookingid   | int(10)    | NO   | PRI | NULL              | auto_increment              |
+| confirm     | tinyint(1) | YES  |     | NULL              |                             |
++-------------+------------+------+-----+-------------------+-----------------------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from hallbooking;
++-----+--------+------+--------+---------------------+---------------------+---------------------+---------------------+-------------+-----------+---------+
+| uid | hallid | hold | cancel | timestamp           | expirydate          | funcstart           | funcenddate         | counttowait | bookingid | confirm |
++-----+--------+------+--------+---------------------+---------------------+---------------------+---------------------+-------------+-----------+---------+
+|   2 |      1 |    0 |      1 | 2017-06-06 13:23:19 | 2017-06-06 12:42:58 | 2017-12-24 01:00:00 | 2017-12-24 02:00:00 |           0 |         2 |       0 |
+|   2 |      1 |    0 |      0 | 2017-07-03 08:30:37 | 2017-06-09 11:45:25 | 2017-12-24 01:00:00 | 2017-12-24 02:00:00 |           0 |         5 |       1 |
+|   3 |      2 |    0 |      0 | 2017-06-06 13:25:57 | 2017-06-11 11:47:47 | 2017-08-24 01:00:00 | 2017-08-24 02:00:00 |           0 |         6 |       1 |
+|   5 |      2 |    1 |      0 | 2017-07-01 09:41:08 | 2017-06-11 11:48:28 | 2017-08-24 01:00:00 | 2017-08-24 02:00:00 |           1 |         7 |       0 |
++-----+--------+------+--------+---------------------+---------------------+---------------------+---------------------+-------------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> desc media;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| mid    | int(10)      | NO   | PRI | NULL    | auto_increment |
+| url    | varchar(200) | YES  |     | NULL    |                |
+| hallid | int(10)      | NO   | MUL | NULL    |                |
+| type   | varchar(20)  | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from media;
++-----+-----------------+--------+-------+
+| mid | url             | hallid | type  |
++-----+-----------------+--------+-------+
+|   1 | happy.mp4       |      2 | video |
+|   2 | wedding vid.jpg |      2 | image |
+|   3 | sangeet.mp3     |      3 | other |
+|   4 | party.jpg       |      3 | image |
+|   5 | hochi.jpg       |      1 | image |
+|   6 | hochi1.jpg      |      1 | image |
+|   7 | hochi2.jpg      |      1 | image |
+|   8 | hochi3.jpg      |      1 | image |
+|   9 | pari.jpg        |      3 | image |
+|  10 | pari1.jpg       |      3 | image |
+|  11 | pari2.jpg       |      3 | image |
+|  12 | pari3.jpg       |      3 | image |
++-----+-----------------+--------+-------+
+12 rows in set (0.00 sec)

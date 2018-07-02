@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update</title>
+	<%include commonHeadElements%>
+
+
+	<link rel="stylesheet" type="text/css" href="/static/styles/animate.css">
+</head>
+
+<body style="background-image: url(/static/images/div.jpg);">
+
+
+<style type="text/css">
+	
+h4{
+	padding: 5% 5% 5% 5%;
+	margin-top: 5%;
+}
+#l{
+	margin-top: 18%;
+}
+#lon{
+	margin-top: 12%;
+}
+
+
+#num{
+	margin-top: 20%;
+}
+
+</style>
+
+<h1 class="animated bounceInUp" style="text-align: center;margin-bottom: 5%">Update Resort name</h1>
+
+<div class="container">
+<form id="update" method="post">
+<div class="row">
+<div class="col-md-4">
+<h4 class="animated bounceInUp">Resort Name:</h4>
+<input type="text" name="resortname" class="form-control" value="<%=data[0].rname%>">
+</div>
+
+<div class="col-md-4">
+<h4 class="animated bounceInUp">Resort Location :</h4>
+<input type="text" name="loc" class="form-control" value="<%=data[0].loc%>">
+</div>
+	
+
+<div class="col-md-2">
+<h4   class="animated bounceInUp" id="l">latitude:<h4>
+<input type="number" name="latitude" id="lat" class="form-control">
+</div>
+	
+
+	<div class="col-md-2">
+<h4  class="animated bounceInUp" id="l">longitude:</h4>
+<input type="number" name="longitude" id="lon" class="form-control">
+</div>
+
+</div>
+
+
+
+<div class="row">
+
+<div class="col-md-5">
+<h4>Resort Tagline :</h4>
+<textarea  type="text" name="resort_Tagline" class="form-control"  col=80><%=data[0].tagline%> </textarea> 
+
+</div>
+
+<div class="col-md-2"></div>
+
+<div class="col-md-5">
+<h4>Resort Description :</h4>
+<textarea  type="text" name="resort_Description" class="form-control" col=80><%=data[0].description%></textarea> 
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-5">
+<h4>Address</h4>
+<textarea  type="text" name="resort_Address" class="form-control"  col=80><%=data[0].address%> </textarea> 
+
+
+</div>
+
+<div class="col-md-1"></div>
+
+
+<div class="col-md-3">
+
+<h4 id="num">Owners Number</h4>
+<input type="number" name="owners_number" value="<%=data[0].ownernumber%>">
+</div>
+
+<div class="col-md-3">
+
+<h4 id="num">Resort Number</h4>
+<input type="number" name="resort_number" value="<%=data[0].resortnumber%>">
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="col-md-4">
+<h4>Owner's Name</h4>
+<input type="text" name="name" class="form-control" value="<%=data[0].name%>">
+</div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<h4>Owner's Mail</h4>
+<input type="text" name="mail" class="form-control" value="<%=data[0].mail%>">
+</div>
+<input type="number" name="uid" class="form-control" value="<%=data[0].uid%>" style="display: none">
+</div>
+
+<div class="col-md-4">
+<h4>Owner's Address</h4>
+<textarea  type="text" name="owner_Address" class="form-control"  col=80>
+	<%=data[0].address%>
+</textarea> 
+
+</div>
+
+
+
+<div class="col-md-2"></div>
+
+
+
+
+<div class="col-md-4"  style="margin-top: 10%;float: right;">
+
+<button class="btn" type="submit">Update</button>
+</div>
+</div>
+</form>
+</div>
+
+</div>
+
+
+
+
+<script >
+	
+
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+
+
+</body>
+</html>

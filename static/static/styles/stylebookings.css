@@ -1,0 +1,103 @@
+.container-booking{
+  padding: 1% 1% 1% 1%;
+  
+   margin-left: 8%;
+  margin-right: 8%;
+}
+.card{
+  background-color: white;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 2% 2% 2% 2%;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  border:none;
+}
+.card:hover{
+box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+}
+.card-area{
+  background-color: white;
+  padding: 1%;
+}
+.confirm{
+  border-left:5px solid #4CAF50;
+}
+.hold{
+  border-left:5px solid #ffeb3b; 
+}
+
+.cancel{
+  border-left: 5px solid #d50000;
+}
+.wait{
+   border-left: 5px solid orange;
+}
+ .font-1{
+  color: #33331a;
+  font-family: 'Raleway',sans-serif;
+  font-weight: bold;
+  
+}
+.font-warning{
+  color:red;
+  font-size: 20px;
+  font-family: calibri;
+  margin-left: 5%;
+}
+.card-area-heading{
+  font-family: 'Raleway',sans-serif;
+  font-weight:bold;
+  font-size:15px;
+}
+.card-area-font{
+  font-family: 'Raleway',sans-serif;
+  font-size: 15px;
+}
+.btn-main{
+  display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    border-radius: 40px;
+    border-style: solid;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    
+    
+}
+.btn-non-imp{
+  color: #d50000;
+    background-color: #fff;
+    transition:0.5s;
+    border:1px solid #d50000;
+
+}
+.btn-imp{
+  color:#fff;
+  background-color: #d50000;
+  border:1px solid #d50000;
+  transition:0.5s;
+
+}
+.btn-imp:hover{
+background-color: white;
+color:#d50000;
+}
+.btn-main,.btn-imp,.btn-non-imp:focus{
+  outline: none;
+}
+.btn-non-imp:hover{
+  color:#fff;
+  background-color: #d50000;
+}

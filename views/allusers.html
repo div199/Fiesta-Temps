@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<%include commonHeadElements.html%> 
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+<script>
+     $(document).ready(function(){
+      $('.role-edit-btn').on('click',function(event){
+      var el = event.target;
+      console.log(el);
+      var number = $(el).attr('id').split('_')[1];
+      console.log(number);
+      $('#rol_'+number).toggle();
+
+    });
+});
+</script>
+
+<script>
+     $(document).ready(function(){
+      $('.edit-user-btn').on('click',function(event){
+      var el = event.target;
+      console.log(el);
+      var number = $(el).attr('id').split('_')[1];
+      console.log(number);
+      $('#1rol_'+number).toggle();
+
+    });
+});
+</script>
+
+</head>
+
+<body>
+
+
+  <%include header.html%>
+
+<% if(!currentUser){ %>
+<p class="font-warning">Sorry !! You are not logged in.</p>
+<% } else if(currentUser.rolename!='admin'){ %>
+<p class="font-warning">Sorry !! You are not authorised for this page.</p>
+<% }else{ %>
+
+
+<div style="margin-top: 125px; text-align: center;">
+<h1>Users</h1>
+</div>
+<hr>
+
+<div style="margin-right: 10%; margin-left: 10%">
+
+ 
+
+ 
+ <%for(var i in user){%>
+ <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-6"><b>uid</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].uid%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>Name</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].name%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>rolename</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].rolename%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>mobile</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].mno%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>mail</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].mail%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>password</b> :</div>
+            <div class="col-md-3 col-sm-6 col-xs-6"><%=user[i].password%></div>
+           <div class="col-md-3 col-sm-6 col-xs-6"><b>Action</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><button  id='btn_<%=i%>' type="info" class="btn btn-primary btn-xs role-edit-btn glyphicon glyphicon-pencil" ></button><button id='1btn_<%=i%>' type="submit" class="btn btn-danger btn-xs  edit-user-btn glyphicon glyphicon-remove-sign"> </button></div>
+      
+      
+    </div>
+    <br><br>
+     
+
+<div id="rol_<%=i %>" style="display: none">
+<div class="container">
+<form action="/app/admin/updateuser" method="post">
+  <div class="row">
+  <div class="col-md-1"></div>
+   <div class="col-md-2"><b>Role:</b></div>
+   <div class="col-md-2">
+   <div class="radio-inline">
+   <% if(user[i].rolename == "customer") {%>
+    
+      <label><input type="radio" value="1" name="role" checked="checked">Customer</label>
+      <%}%>
+       <% if(user[i].rolename != "customer") {%>
+    
+      <label><input type="radio" value="1" name="role" >Customer</label>
+      <%}%>
+
+          </div>
+    </div>
+    <div class="col-md-2">
+    <div class="radio-inline">
+    <% if(user[i].rolename == "owner") {%>
+      <label><input type="radio" value="2" name="role" checked="checked">Owner</label>
+      <%}%>
+      <% if(user[i].rolename != "owner") {%>
+      <label><input type="radio" value="2" name="role">Owner</label>
+      <%}%>
+    </div>
+    </div>
+    <div class="col-md-2">
+    <div class="radio-inline">
+    <% if(user[i].rolename == "admin") {%>
+      <label><input type="radio" value="3" name="role" checked="checked">Admin</label>
+      <%}%>
+      <% if(user[i].rolename != "admin") {%>
+      <label><input type="radio" value="3" name="role" >Admin</label>
+      <%}%>
+    </div>
+    </div>
+    <input type="text" value="<%= user[i].uid %>" name="uid" style="display: none;">
+    <div class="col-md-3">
+    <button type="submit" class="btn btn-success btn-xs">Save</button>
+    </div>
+    </div>
+  </form>
+</div>
+
+</div>
+
+<div id="1rol_<%=i %>" style="display: none">
+<div class="container">
+<form action="/app/admin/deleteuser" method="post">
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-6"><b>Do you want to delete???</b></div>
+<input type="text" value="<%= user[i].uid %>" name="uid" style="display: none;">
+<div class="col-md-4">
+    <button type="submit" class="btn btn-success btn-xs">YES</button>
+    </div>
+</div>
+</form>
+</div>
+</div>
+
+
+
+ <%}%> 
+<% } %>
+<%include footer.html%>
+</body>
+
+</html>

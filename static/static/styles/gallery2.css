@@ -1,0 +1,75 @@
+h1{
+  font-family: Satisfy;
+  font-size:30px;
+  text-align:center;
+  color:black;
+  padding:1%;
+}
+#gallery{
+  -webkit-column-count:4;
+  -moz-column-count:4;
+  column-count:4;
+  
+  -webkit-column-gap:20px;
+  -moz-column-gap:20px;
+  column-gap:20px;
+}
+@media (max-width:1200px){
+  #gallery{
+  -webkit-column-count:3;
+  -moz-column-count:3;
+  column-count:3;
+    
+  -webkit-column-gap:20px;
+  -moz-column-gap:20px;
+  column-gap:20px;
+}
+}
+@media (max-width:800px){
+  #gallery{
+  -webkit-column-count:2;
+  -moz-column-count:2;
+  column-count:2;
+    
+  -webkit-column-gap:20px;
+  -moz-column-gap:20px;
+  column-gap:20px;
+}
+}
+@media (max-width:600px){
+  #gallery{
+  -webkit-column-count:1;
+  -moz-column-count:1;
+  column-count:1;
+}  
+}
+.card-gallery2{
+  width:275px;
+  height:auto;
+  margin: 4% auto;
+  box-shadow:-5px 5px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.modal-img-gallery2,.model-vid{
+  width:50%;
+  height:auto;
+  margin-top: 8%;
+  margin-left: 25%;
+ 
+}
+.modal-body-gallery2{
+  padding:0px;
+}
+.container-gallery2{
+  
+  margin-left: 5%;
+  margin-right: 5%; 
+  margin-bottom: 8%;
+}
+#img-container{
+  width:275px;
+  height:180px;
+}
+#img-container ::after{
+  display: none;
+}

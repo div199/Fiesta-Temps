@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<%include commonHeadElements.html%> 
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+ 
+
+</head>
+
+<body>
+
+
+  <%include header.html%>
+<% if(!currentUser){ %>
+<p class="font-warning">Sorry !! You are not logged in.</p>
+<% } else if(currentUser.rolename!='admin'){ %>
+<p class="font-warning">Sorry !! You are not authorised for this page.</p>
+<% }else{ %>
+
+<div style=" text-align: center;">
+<h1>Notifications</h1>
+</div>
+<hr>
+
+<div style="margin-right: 10%; margin-left: 15%">
+
+
+
+
+ <%for(var i in notification){%>
+ <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-6"><b>NAME</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=notification[i].name%></div>
+
+      <div class="col-md-3 col-sm-6 col-xs-6"><b>EMAIL</b>:</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=notification[i].email%></div>
+
+      <div class="col-md-3 col-sm-6 col-xs-6"><b>MOBILE</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=notification[i].mobile%></div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><b>RESORT_NAME</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=notification[i].resort_name%></div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><b>DESCRIPTION</b> :</div>
+      <div class="col-md-3 col-sm-6 col-xs-6"><%=notification[i].description%></div>
+      
+ </div>
+
+ <%}}%> 
+
+<%include footer.html%>
+</body>
+
+</html>

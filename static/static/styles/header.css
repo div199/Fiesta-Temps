@@ -1,0 +1,78 @@
+#tab-content ul li {
+ display: block;
+ float:left;
+ padding: 20px;
+}
+a{
+  color: black;
+  text-decoration: none;
+}
+          
+
+.navbar-main{
+    position: relative;
+    min-height: 50px;
+    border: 1px solid transparent;
+}
+.navbar-main a:hover{
+  font-weight: normal;
+  text-decoration: none;
+  color:black;
+}
+.navbar-main li:hover{
+   border-bottom: 2px solid #D50000;
+}
+
+@media (min-width: 768px){
+dropdowns.less:148
+.navbar-right .dropdown-menu {
+    right: 3%;
+    left: 5%;
+}}
+#logo{
+  height: auto; width: 50%; margin-top:0;
+  }
+ @media only screen
+   and (min-device-width : 300px)
+   and (max-device-width : 1200px){
+    #logo{
+      width: 30%;
+    }
+    #tab-content ul li {
+ 
+ float:left;
+ padding: 10px;
+}
+ul{
+  margin-left: 12%;
+}
+}
+     
+.navbar-toggle{
+     background-color: white;
+     border: 1px solid red;
+     margin-top: 5%;
+}
+
+.icon-bar{
+    background-color: red; 
+     }
+     
+}
+.nim ul{
+  list-style-type:none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.dropdown-remove-border li:hover{
+  border:none;
+}
+
+.container-signup{
+  margin-left: 2%;
+  margin-right: 2%;
+  height: auto;
+}
+#signup{
+  top:-10%;
+}

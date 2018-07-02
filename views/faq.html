@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>faqs</title>
+  <% include commonHeadElements.html %>
+  <style>
+      .btn-glyphicon {
+        float: left;
+    padding:8px;
+    background:#ffffff;
+    margin-right:4px;
+}
+.icon-btn {
+    width: 200px;
+    padding: 1px 15px 3px 2px;
+    border-radius:50px;
+
+}
+
+.container{
+    background-image: url(/static/images/pattern.jpg);
+}
+  </style>
+}
+<script>
+$(document).ready(function(){
+    $("#1").click(function(){
+        $("#search").hide();
+         $("#book").hide();
+         $("#host").hide();
+         $("#add").hide();
+         $("#login-faq").show();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#3").click(function(){
+        $("#search").hide();
+         $("#login-faq").hide();
+         $("#host").hide();
+         $("#add").hide();
+         $("#book").show();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#4").click(function(){
+        $("#search").hide();
+         $("#book").hide();
+         $("#login-faq").hide();
+         $("#add").hide();
+         $("#host").show();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#2").click(function(){
+        $("#login-faq").hide();
+         $("#book").hide();
+         $("#host").hide();
+         $("#add").hide();
+         $("#search").show();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#5").click(function(){
+        $("#search").hide();
+         $("#book").hide();
+         $("#host").hide();
+         $("#login-faq").hide();
+         $("#add").show();
+    });
+});
+</script>
+
+</head>
+<body>
+<% include header.html %>
+<div class="container">
+  <div class="jumbotron" style="background-color: white; border: 10px; border-color: red; border-radius: 10px" >
+  <font color="red" style="text-align: center;">
+    <h1>Support Corner</h1>   </font>   
+    <font color="black" style="text-align: center;"> <p>FiestaTemps is a public platform to book resorts for your functions without any actual efforts.You can search for resorts on basis of date and venue and can book them in a couple of seconds...</p>
+    </font>
+  </div>
+
+<div class="row">
+  <div class="col-md-3" >
+   <h3> 
+<button id="1" class="btn icon-btn btn-danger" >
+<span class="glyphicon btn-glyphicon glyphicon-user img-circle text-danger"></span>
+Login and Sign Up
+</button>
+<button id="4" class="btn icon-btn btn-danger" >
+<span class="glyphicon btn-glyphicon glyphicon-star img-circle text-danger"></span>
+Be a Host
+</button>
+<button id="2" class="btn icon-btn btn-danger" >
+<span class="glyphicon btn-glyphicon glyphicon-search img-circle text-danger"></span>
+Search Resort
+</button>
+
+<button id="3" class="btn icon-btn btn-danger" >
+<span class="glyphicon btn-glyphicon glyphicon-flag img-circle text-danger"></span>
+Book Resort
+</button>
+
+<button id="5" class="btn icon-btn btn-danger" >
+<span class="glyphicon btn-glyphicon glyphicon-plus-sign img-circle text-danger"></span>
+Add Resort
+</button>
+
+        
+    
+</h3>
+  </div>
+  <div class="col-md-9">
+    
+<div class="cd-faq-items">
+        <ul id="login-faq" class="cd-faq-group">
+            <li class="cd-faq-title"><h2>Login and Sign Up</h2></li>
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How do I register with FiestaTemps?</b></font>
+                 </a>
+                <div class="cd-faq-content"><font color="#999966">
+               Click on the 'Sign Up' link on the homepage of fiestatemps.com. Enter all your details and click on 'Sign Up' and you are registered with us.</font>
+                 </div>
+            </li>
+ 
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>Is it necessary to register for booking resorts?</b></font>
+                
+               
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                  Although registering is not a compulsion,we would suggest you to register on our website,since it would allow you to view your entire booking history and avail the exciting offers.And it is necessary to register on our site if you want to book any resort</font>
+                </div> 
+            </li>
+            
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>Why am I being asked for my Mobile number?</b></font>
+                
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                   Well,the simplest reason  being that it is for the security and also so that the booking conformation can be sent to you via SMS.And,you also get the information on discounts and offers.</font>
+                </div> 
+            </li>        
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>What are the benefits of registering on the site?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    By registering,you can get access to your booking history on the site.You can also opt to get information on special offers.</font>
+                </div> 
+            </li>     
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>I have forgotten my password,how do I proceed?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    On the fiestatemps.com home page, enter your username in the login box on the top right hand corner, click on the Forget Password link, and the password will be emailed to you on the email address registered  with us.</font>
+                </div> 
+            </li>            
+        
+</ul>
+</div>
+
+
+
+
+<div class="cd-faq-items">
+        <ul id="host" class="cd-faq-group">
+            <li class="cd-faq-title"><h2>Be a Host</h2></li>
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I be a host?</b></font>
+                 </a>
+                <div class="cd-faq-content"><font color="#999966">
+                You will be made a host by admin only.</font>
+                 </div>
+            </li>
+ 
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I make a request to admin for being a host?</b></font>
+                
+               
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    You can click on 'Be a host' on fiestatemps.com homepage or footer and fill all the details and submit.
+                </font>
+                </div> 
+            </li>
+            
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>What admin will do?</b></font>
+               
+                
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    Admin will contact you and will make you owner and add your resort.</font>
+                </div> 
+            </li>        
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>Why so, why admin will make me owner?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                   This is keeping in mind the aspect that anyone can add false resorts to make money.So admin will make you admin by checking your identity.</font>
+                </div> 
+            </li>          
+        </ul>
+    </div>  
+
+
+   
+     <div class="cd-faq-items">
+        <ul id="search" class="cd-faq-group">
+            <li class="cd-faq-title"><h2>Search Resort</h2></li>
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How do I search a resort?</b></font>
+                 </a>
+                <div class="cd-faq-content"><font color="#999966">
+                 Click on the 'search by date' and 'search by location' on the fiestatemps.com home page.</font>
+                 </div>
+            </li>
+ 
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>Can I search by resort name?</b></font>
+                
+               
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    Yes, you can search by resort name by typing the resort name in search bar on top of fiestatemps.com homepage.</font>
+                </div> 
+            </li>
+            
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>On what basis, I can search?</b></font>
+               
+                
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    You can search on the basis of particular date and particular location.</font>
+                </div> 
+            </li>        
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>What are the benefits of searching?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                     By searching, you don't have to go through a list of unwanted resorts, you can directly get a list of your demanded resorts.</font>
+                </div> 
+            </li>          
+        </ul>
+    </div>  
+
+
+
+     <div class="cd-faq-items">
+        <ul id="book" class="cd-faq-group">
+            <li class="cd-faq-title"><h2>Book Resort</h2></li>
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How do I book a rsort?</b></font>
+                 </a>
+                <div class="cd-faq-content"><font color="#999966">
+                 You can book a resort by choosing your resort and hall and clicking on book and confirming the entries.</font>
+                 </div>
+            </li>
+ 
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I hold a resort?</b></font>
+                
+               
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    You can hold a resort by clicking on hold of that particular resort but if you didn't confirmed that resort within 3 hours of hold, the resort will be shown free.</font>
+                </div> 
+            </li>
+            
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How my booking will get confirmed?</b></font>
+               
+                
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                    The owner will confirm your request and on confirmation, you will get a message of confirmation.</font>
+                </div> 
+            </li>        
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I cancel my booking?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                     By clicking on the cancel button on your dashboard, you can cancel your booking.</font>
+                </div> 
+            </li>          
+        </ul>
+    </div>  
+
+
+
+
+    
+
+
+
+
+
+    <div class="cd-faq-items">
+        <ul id="add" class="cd-faq-group">
+            <li class="cd-faq-title"><h2>Add Resort</h2></li>
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I add my resort?</b></font>
+                 </a>
+                <div class="cd-faq-content"><font color="#999966">
+                You have to contact to admin for this.</font>
+                 </div>
+            </li>
+ 
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How will you update your resort?</b></font>
+                
+               
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                   You can update the details of your resort by your own.</font>
+                </div> 
+            </li>
+            
+            <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I add a new resort in addition to old one?</b></font>
+               
+                
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                   Admin will do this stuff for you, you just have to contact admin.</font>
+                </div> 
+            </li>        
+             <li>
+                <a class="cd-faq-trigger" href="#0"><font color="#5c5c3d"><b>How can I confirm my bookings of my resort?</b></font>
+               
+              
+                </a>
+                <div class="cd-faq-content"><font color="#999966">
+                You will see new requests in your dashboard and you can confirm bookings from there.</font>
+                </div> 
+            </li>          
+        </ul>
+    </div>  
+    </div>
+  </div>
+  </div>
+  <% include footer.html %>
+  </body>
+ </html>

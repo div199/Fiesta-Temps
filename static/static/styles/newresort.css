@@ -1,0 +1,153 @@
+.btn-main{
+  display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    
+    border-style: solid;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    
+    
+}
+.btn-non-imp{
+  color: #d50000;
+    background-color: #fff;
+   
+}
+.btn-imp{
+  color:#fff;
+  background-color: #d50000;
+}
+.btn-book{
+  color:#fff;
+  background-color: #ff5722;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-size: 20px; 
+  border: 1px solid #ff5722;
+}
+.btn-imp:hover{
+background-color: #f54336;
+}
+.btn-main,.btn-imp,.btn-non-imp:focus{
+  outline: none;
+}
+.btn-non-imp:hover{
+  color:#fff;
+  background-color: #d50000;
+}
+
+
+#bookknow{
+  font-size: 25px;
+  margin-top: 25%;
+  border-color: orange;
+  
+  margin-right: 16%;
+}
+
+
+.moreFacilities span{
+padding-right: 5%;
+}
+
+
+
+
+
+
+.well{
+  margin-top: 6%;
+}
+
+#availableHalls{
+    text-align: right;
+   }
+
+@media only screen
+   and (min-device-width : 0px)
+   and (max-device-width : 800px){
+   
+
+   #availableHalls{
+    text-align: center;
+   }
+    }
+
+#main{
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: grey;
+
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: grey;
+}
+#calendar:hover{
+  cursor: pointer;
+}
+.heading-top{
+  text-align: center;
+  font-family: "Josefin Sans",sans-serif;
+  color:black;
+}
+.small-heading-top{
+  text-align: center;
+  font-family: "Raleway",sans-serif;
+  color:black;
+}
+.heading{
+  text-align: center;
+  font-family: "Josefin Sans",sans-serif;
+
+  
+}
+.small-heading{
+  text-align: right;
+  font-family: "Raleway",sans-serif;
+  margin-bottom: 2%;
+  
+}
+/*
+.small-heading:after{
+  content: ' \2014';
+  color:#d50000;
+}
+.small-heading:before{
+  content: '\2014 ';
+  color:#d50000;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}*/
+.tagline{
+  text-align: right;
+  font-family: "Raleway",sans-serif;
+  margin-bottom: 2%;
+  
+}
+p{
+  font-family: "Raleway",sans-serif;
+  font-size: 17px;
+}
+@media screen and (min-width: 250px) and (max-width: 650px){
+ #hallimage{
+  display: none;
+} 
+}
+@media screen and (min-width: 651px){
+ #hallimage{
+  display: block;
+} 
+
+}

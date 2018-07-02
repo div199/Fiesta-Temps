@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Resort</title>
+<% include commonHeadElements.html %>
+
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+
+</head>
+<body>
+<% include header.html %>
+<% if(!currentUser){ %>
+<p class="font-warning">Sorry !! You are not logged in.</p>
+<% } else if(currentUser.rolename!='admin'){ %>
+<p class="font-warning">Sorry !! You are not authorised for this page.</p>
+<% }else{ %>
+
+<div style="margin-right: 5%;margin-left: 5%">
+<div class="container-booking">
+<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-6">
+		<h1 class="font-1">Update Resort</h1>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-6"><a href="/app/admin/listresort"><button class="btn-main btn-non-imp pull-right">Cancel</button></a></div>
+</div>
+	
+	
+	<form id='resort-form' method="post" action="/app/admin/resort/<%= data[0].rid %>/update">
+
+	<h3 class="font-1">Details of the Resort :</h3> 
+	<div class="row">
+		<div class="col-md-4">
+			<span class="card-area-heading">Name :</span>
+			<input type="text" name="rname" placeholder="Name of Resort" class="form-control" value="<%= data[0].rname %>" required >
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading">Tel No. :</span>
+			<input type="tel" name="resort_number" maxlength="10" class="form-control" placeholder="Contact number of Resort" value="<%= data[0].resortnumber %>" required  >
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading">City :</span>
+			<input type="text" name="location" placeholder="Enter city of Resort" class="form-control" value="<%= data[0].loc %>" required >
+		</div>
+	</div>
+	<br>
+	
+	<div class="row">
+        <div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Address :</span>
+			<textarea class="form-control" name="Address" placeholder="Address here.." rows="4"  ><%= data[0].resortaddress %></textarea required >
+		</div>
+		<div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Number of Halls :</span>
+			<input type="text" name="numberOfHalls" placeholder="Tagline for Resort" class="form-control"  value="<%= data[0].nhalls %>" required>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Description :</span>
+			<textarea class="form-control" name="description" placeholder="Description here.." rows="4"><%= data[0].description %></textarea required >
+		</div>
+		<div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Tagline :</span>
+			<input type="text" name="tagline" placeholder="Tagline for Resort" class="form-control"  value="<%= data[0].tagline %>">
+		</div>
+	</div>
+	<div  style="margin-top: 2%">
+			<span class="card-area-heading">Terms & Conditions :</span>
+			<textarea class="form-control" name="Conditions" placeholder="Description here.." rows="4"><%= data[0].termsconditions %></textarea >
+		</div>
+<h3 class="font-1">Details of Owner :</h3>
+	<div class="row" style="margin-top: 2%">
+		<div class="col-md-4">
+			<span class="card-area-heading"> Owner's Name :</span>
+			<input type="text" name="Oname" placeholder="Name of Owner" class="form-control" required value="<%= data[0].name %>" >
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading"> Owner's E-mail :</span>
+			<input type="email" name="Omail" placeholder="E-mail ID of Owner" class="form-control" required value="<%= data[0].mail %>" >
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading"> Owner's Contact Number :</span>
+			<input type="tel" name="mobile" placeholder="E-mail ID of Owner" class="form-control" required value="<%= data[0].mno %>" >
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Address :</span>
+			<textarea class="form-control" name="owner_Address" placeholder="Owner address" rows="4"><%= data[0].useraddress %></textarea required >
+		</div>
+		<div class="col-md-6"></div>
+		</div>
+		<div style="margin-top: 2%;">
+	 <h4 class="font-1">Services :</h4>
+	 		<% if(data[0].wifi==0){ %>
+	      <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="wifi" value="wifi">
+          Wifi</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="wifi" value="wifi" checked="checked">
+          Wifi</label>
+          <% } %>
+     		
+     		<% if(data[0].parking==0){ %>
+           <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Parking" value="Parking">
+          Parking-Area</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Parking" value="Parking" checked="checked">
+          Parking-Area</label>
+          <% } %>
+    		<% if(data[0].ac==0){ %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="AC" value="AC">
+          AC</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="AC" value="AC" checked="checked">
+          AC</label>
+          <% } %>
+      		<% if(data[0].nonveg==0){ %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="NonVeg" value="Non-Veg">
+          Non-Veg</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="NonVeg" value="Non-Veg" checked="checked">
+          Non-Veg</label>
+          <% } %>
+
+     		<% if(data[0].DJ==0){ %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Music" value="Music">
+          DJ & Music</label>
+      		<% } else { %>
+      		<label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Music" value="Music" checked="checked">
+          DJ & Music</label>
+          <% } %>
+          <% if(data[0].liquor==0){ %>
+         <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Liquor" value="Liquor">
+          Liquor-License</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Liquor" value="Liquor" checked="checked">
+          Liquor-License</label>
+          <% } %>
+     		<% if(data[0].flowerdecor==0){ %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Flower" value="Flower">
+          Flower-Decoration</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Flower" value="Flower" checked="checked">
+          Flower-Decoration</label>
+          <% } %>
+
+     	<% if(data[0].catering==0){ %>
+         <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="InCatering" value="In-Catering">
+          In-House Catering</label>
+     	<% } else { %>
+     	<label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="InCatering" value="In-Catering" checked="checked">
+          In-House Catering</label>
+          <% } %>
+          <% if(data[0].catering==0){ %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Rooms" value="Rooms">
+          Rooms For Stay</label>
+          <% } else { %>
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Rooms" value="Rooms" checked="checked">
+          Rooms For Stay</label>
+          <% } %>
+    </div>
+	<div class="row" style="margin-top: 3%">
+	<div class="col-md-4 col-sm-4 col-xs-4"></div>
+		<div class="col-md-4 col-sm-4 col-xs-4">
+		<button class="btn-main btn-imp" type="submit">Save Details</button>
+	</div>
+	<div class="col-md-4 col-sm-4 col-xs-4"></div>
+	</div>
+	
+	</form>	
+	</div>
+	</div>
+<% } %>
+	<% include footer.html %>
+</body>
+</html>

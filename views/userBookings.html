@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Bookings</title>
+	<% include commonHeadElements.html %>
+	
+	
+	<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+	
+</head>
+<body>
+<% include header.html %>
+<% if(errorMessage){ %>
+<p class="font-warning" style="margin-left: 5%"><%= errorMessage %></p>
+<% } else{ %>
+<div style=" font-family: 'Raleway',sans-serif;">
+	<div class="container-booking">
+		<% if(!this.currentUser){ %>
+			<p class="font-warning">Sorry !!! You are not logged in</p>
+		<% }else{ %>
+
+			<% var count=0 %>
+			<% if(role=="user"){ %>
+			<h3 class="font-1">Confirmed Bookings </h3>
+			<% count=0 %>
+			<% for(var i in bookings){ %>
+				<% if(bookings[i].confirm==1){ %>
+<div class="card">
+	<div class="card-area confirm">
+		<% count++ %>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Booking-ID :</span>
+				<span class="card-area-font"><%= bookings[i].bookingid %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Start Time :</span>
+				<span class="card-area-font"><%= utils.formatDateWithTime(bookings[i].funcstart) %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">End Time :</span>
+				<span class="card-area-font"><%= utils.formatDateWithTime(bookings[i].funcenddate) %></span>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Resort Name :</span>
+				<span class="card-area-font"><%= bookings[i].rname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Hall Name :</span>
+				<span class="card-area-font"><%= bookings[i].hname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading"> Location :</span>
+				<span class="card-area-font"><%= bookings[i].loc %></span>
+			</div>
+		</div>
+		<div class="row">
+			
+		</div>
+		<div id="showconfirmuser<%=bookings[i].bookingid%>" class="collapse">
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Cost :</span>
+					<span class="card-area-font">Rs. <%= bookings[i].cost %> </span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Owner :</span>
+					<span class="card-area-font"><%= bookings[i].name %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Contact Number :</span>
+					<span class="card-area-font"><%= bookings[i].mno %></span>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Owner Mail ID :</span>
+					<span class="card-area-font"><%= bookings[i].mail %></span>
+				</div>
+				<div class="col-md-8">
+					<span class="card-area-heading">Resort Address :</span>
+					<span class="card-area-font"><%= bookings[i].address %></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<a href="/app/user/bookings/<%= bookings[i].bookingid %>/cancel"><span><button type="submit" class="btn-main btn-imp">Cancel</button></span></a>
+	<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showconfirmuser<%=bookings[i].bookingid%>" >View More >></button></span>
+</div>
+	<% }} %>
+	<% if(count==0){ %>
+	<div class="card">
+	<p> No bookings found</p>
+	</div>
+	<% } %>
+	<h3 class="font-1">Bookings on Hold: </h3>
+<% count=0 %>
+<% for(var i in bookings){ %>
+<% if(bookings[i].hold==1){ %>
+<div class="card">
+	<div class="card-area hold">
+		<% count++ %>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Booking-ID :</span>
+				<span class="card-area-font"><%= bookings[i].bookingid %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Start Time :</span>
+				<span class="card-area-font"><%= utils.formatDateWithTime(bookings[i].funcstart) %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">End Time :</span>
+				<span class="card-area-font"><%= utils.formatDateWithTime(bookings[i].funcenddate) %></span>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Resort Name :</span>
+				<span class="card-area-font"><%= bookings[i].rname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Hall Name :</span>
+				<span class="card-area-font"><%= bookings[i].hname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading"> Location :</span>
+				<span class="card-area-font"><%= bookings[i].loc %></span>
+			</div>
+		</div>
+		<div class="row">
+			
+		</div>
+		<div id="showholduser<%=bookings[i].bookingid%>" class="collapse">
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Cost :</span>
+					<span class="card-area-font">Rs. <%= bookings[i].cost %> </span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Owner :</span>
+					<span class="card-area-font"><%= bookings[i].name %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Contact Number :</span>
+					<span class="card-area-font"><%= bookings[i].mno %></span>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Owner Mail ID :</span>
+					<span class="card-area-font"><%= bookings[i].mail %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Address :</span>
+					<span class="card-area-font"><%= bookings[i].resortaddress %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Count To Wait :</span>
+					<span class="card-area-font"><%= bookings[i].counttowait %></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<a href="/app/user/bookings/<%= bookings[i].bookingid %>/cancel"><span><button type="submit" class="btn-main btn-imp">Cancel</button></span></a>
+	<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showholduser<%=bookings[i].bookingid%>">View More >></button></span>
+</div>
+	<% }} %>
+	<% if(count==0){ %>
+	<div class="card">
+	<p> No bookings found</p>
+	</div>
+	<% } %>
+	
+	<button class="btn-main btn-non-imp" data-toggle="collapse" data-target="#cancelledbookings"> View all Cancelled bookings >></button>
+	
+	<div id="cancelledbookings" class="collapse">
+	<h3 class="font-1">Cancelled Bookings </h3>
+	<% count=0 %>
+	<% for(var i in cancelled){ %>
+<div class="card">
+	<div class="card-area cancel">
+	<% count++ %>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Booking-ID :</span>
+				<span class="card-area-font"><%= cancelled[i].bookingid %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Start Time :</span>
+				<span class="card-area-font"><%= cancelled[i].funcstart.toUTCString() %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">End Time :</span>
+				<span class="card-area-font"><%= cancelled[i].funcenddate.toUTCString() %></span>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Resort Name :</span>
+				<span class="card-area-font"><%= cancelled[i].rname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Hall Name :</span>
+				<span class="card-area-font"><%= cancelled[i].hname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading"> Location :</span>
+				<span class="card-area-font"><%= cancelled[i].loc %></span>
+			</div>
+		</div>
+		<div class="row">
+			
+		</div>
+		<div id="showcanceluser<%=cancelled[i].bookingid%>" class="collapse">
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Cost :</span>
+					<span class="card-area-font">Rs. <%= cancelled[i].cost %> </span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Owner :</span>
+					<span class="card-area-font"><%= cancelled[i].name %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Contact Number :</span>
+					<span class="card-area-font"><%= cancelled[i].mno %></span>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Owner Mail ID :</span>
+					<span class="card-area-font"><%= cancelled[i].mail %></span>
+				</div>
+				<div class="col-md-8">
+					<span class="card-area-heading">Resort Address :</span>
+					<span class="card-area-font"><%= cancelled[i].address %></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showcanceluser<%=cancelled[i].bookingid%>">View More >></button></span>
+</div>
+		
+	<% } %>
+	<% if(count==0){ %>
+	<div class="card">
+	<p> No bookings found</p>
+	</div>
+	<% } %>
+	</div>
+
+
+	<button class="btn-main btn-non-imp" data-toggle="collapse" data-target="#previousbookingsuser"> View all Previous bookings >></button>
+<div id="previousbookingsuser" class="collapse">
+	<h3 class="font-1">Previous Bookings </h3>
+	<% count=0 %>
+	<% for(var i in previous){ %>
+		<% count++ %>
+		<div class="card">
+			<div class="card-area wait">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booking-ID :</span>
+						<span class="card-area-font"><%= previous[i].bookingid %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Start Time :</span>
+						<span class="card-area-font"><%= previous[i].funcstart.toUTCString() %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">End Time :</span>
+						<span class="card-area-font"><%= previous[i].funcenddate.toUTCString() %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Resort Name :</span>
+						<span class="card-area-font"><%= previous[i].rname %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Hall Name :</span>
+						<span class="card-area-font"><%= previous[i].hname %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading"> Location :</span>
+						<span class="card-area-font"><%= previous[i].loc %></span>
+					</div>
+				</div>		
+				<div id="showprevioususer<%=previous[i].bookingid%>" class="collapse">
+					<div class="row">
+						<div class="col-md-4">
+							<span class="card-area-heading">Cost :</span>
+							<span class="card-area-font">Rs. <%= previous[i].cost %> </span>
+						</div>
+						<div class="col-md-4">
+							<span class="card-area-heading">Resort Owner :</span>
+							<span class="card-area-font"><%= previous[i].name %></span>
+						</div>
+						<div class="col-md-4">
+							<span class="card-area-heading">Resort Contact Number :</span>
+							<span class="card-area-font"><%= previous[i].mno %></span>
+						</div>
+				
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<span class="card-area-heading">Owner Mail ID :</span>
+							<span class="card-area-font"><%= previous[i].mail %></span>
+						</div>
+						<div class="col-md-8">
+							<span class="card-area-heading">Resort Address :</span>
+							<span class="card-area-font"><%= previous[i].address %></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showprevioususer<%=previous[i].bookingid%>">View More >></button></span>
+		</div>
+		
+	<% } %>
+	<% if(count==0){ %>
+	<div class="card">
+	<p> No bookings found</p>
+	</div>
+	<% } %>
+	</div>
+
+<!-- Display for owner -->
+<% } else if(role=='resort'){ %>
+<h3 class="font-1">Bookings to be Confirmed by You : </h3>
+<% count=0 %>
+	<% for(var i in bookings){ %>
+		<% if(bookings[i].hold==1){ %>
+		<% count++ %>
+		<div class="card">
+			<div class="card-area hold">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booking ID :</span>
+						<span class="card-area-font"><%= bookings[i].bookingid %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading"> Resort Name :</span>
+						<span class="card-area-font"><%= bookings[i].rname %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Hall Name :</span>
+						<span class="card-area-font"><%= bookings[i].hname %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booked By :</span>
+						<span class="card-area-font"><%= bookings[i].name %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Start Time :</span>
+						<span class="card-area-font"><%= bookings[i].funcstart.toUTCString() %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">End Time :</span>
+						<span class="card-area-font"><%= bookings[i].funcenddate.toUTCString() %></span>
+					</div>
+				</div>
+				<div id="showholdowner<%=bookings[i].bookingid%>" class="row collapse">
+					<div class="col-md-4">
+						<span class="card-area-heading">Contact :</span>
+						<span class="card-area-font"><%= bookings[i].mno %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">E-mail ID :</span>
+						<span class="card-area-font"><%= bookings[i].mail %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Count To Wait :</span>
+						<span class="card-area-font"><%= bookings[i].counttowait %></span>
+					</div>
+				</div>
+			</div>
+			<br>
+			<a href="/app/resort/bookings/<%= bookings[i].bookingid %>/confirm"><span><button type="submit" class="btn-main btn-imp">Confirm</button></span></a>
+			<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showholdowner<%=bookings[i].bookingid%>">View More >></button></span>
+		</div>
+	<% } %>
+	<% } %>
+	<% if(count==0){ %>
+		<div class="card">
+			<p> No bookings found </p>
+		</div>
+	<% } %>
+
+	<h3 class="font-1">Confirmed Bookings : </h3>
+	<% count=0 %>
+	<% for(var i in bookings){ %>
+	<!-- Owners confirm bookings -->
+		<% if(bookings[i].confirm==1){ %>
+		<% count++ %>
+		
+		<div class="card">
+			<div class="card-area confirm">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booking ID :</span>
+						<span class="card-area-font"><%= bookings[i].bookingid %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading"> Resort Name :</span>
+						<span class="card-area-font"><%= bookings[i].rname %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Hall Name :</span>
+						<span class="card-area-font"><%= bookings[i].hname %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booked By :</span>
+						<span class="card-area-font"><%= bookings[i].name %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Start Time :</span>
+						<span class="card-area-font"><%= bookings[i].funcstart.toUTCString() %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">End Time :</span>
+						<span class="card-area-font"><%= bookings[i].funcenddate.toUTCString() %></span>
+					</div>
+				</div>
+				<div id="showconfirmowner<%=bookings[i].bookingid%>" class="row collapse">
+					<div class="col-md-4">
+						<span class="card-area-heading">Contact :</span>
+						<span class="card-area-font"><%= bookings[i].mno %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">E-mail ID :</span>
+						<span class="card-area-font"><%= bookings[i].mail %></span>
+					</div>
+				</div>
+			</div>
+			<br>
+			<a href="/app/resort/bookings/<%= bookings[i].bookingid %>/cancel"><span><button type="submit" class="btn-main btn-imp">Cancel</button></span></a>
+			<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showconfirmowner<%=bookings[i].bookingid%>">View More >></button></span>
+		</div>
+	<% } %>
+	<% } %>
+	<% if(count==0){ %>
+		<div class="card">
+			<p> No bookings found </p>
+		</div>
+	<% } %>
+	
+	<button class="btn-main btn-non-imp" data-toggle="collapse" data-target="#cancelledbookingsowner"> View all Cancelled bookings >></button>
+	
+	<div id="cancelledbookingsowner" class="collapse">
+	<h3 class="font-1">Cancelled Bookings : </h3>
+	<% count=0 %>
+	<% for(var i in cancelled){ %>
+		<% count++ %>
+		<div class="card">
+			<div class="card-area cancel">
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booking ID :</span>
+						<span class="card-area-font"><%= cancelled[i].bookingid %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading"> Resort Name :</span>
+						<span class="card-area-font"><%= cancelled[i].rname %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Hall Name :</span>
+						<span class="card-area-font"><%= cancelled[i].hname %></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<span class="card-area-heading">Booked By :</span>
+						<span class="card-area-font"><%= cancelled[i].name %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">Start Time :</span>
+						<span class="card-area-font"><%= cancelled[i].funcstart.toUTCString() %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">End Time :</span>
+						<span class="card-area-font"><%= cancelled[i].funcenddate.toUTCString() %></span>
+					</div>
+				</div>
+				<div id="showcancelowner<%=cancelled[i].bookingid%>" class="row collapse">
+					<div class="col-md-4">
+						<span class="card-area-heading">Contact :</span>
+						<span class="card-area-font"><%= cancelled[i].mno %></span>
+					</div>
+					<div class="col-md-4">
+						<span class="card-area-heading">E-mail ID :</span>
+						<span class="card-area-font"><%= cancelled[i].mail %></span>
+					</div>
+				</div>
+			</div>
+			<br>
+			
+			<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showcancelowner<%=cancelled[i].bookingid%>">View More >></button></span>
+		</div>
+	<% } %>
+	<% if(count==0){ %>
+		<div class="card">
+			<p> No bookings found </p>
+		</div>
+	<% } %>
+	</div>
+
+	<button class="btn-main btn-non-imp" data-toggle="collapse" data-target="#previousbookingsowner"> View all Previous bookings >></button>
+	<div id="previousbookingsowner" class="collapse">
+	<h3 class="font-1">Previous Bookings </h3>
+	<% count=0 %>
+
+	<% for(var i in previous){ %>
+	<% count++ %>
+	<div class="card">
+	<div class="card-area wait">
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Booking-ID :</span>
+				<span class="card-area-font"><%= previous[i].bookingid %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Start Time :</span>
+				<span class="card-area-font"><%= previous[i].funcstart.toUTCString() %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">End Time :</span>
+				<span class="card-area-font"><%= previous[i].funcenddate.toUTCString() %></span>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<span class="card-area-heading">Resort Name :</span>
+				<span class="card-area-font"><%= previous[i].rname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading">Hall Name :</span>
+				<span class="card-area-font"><%= previous[i].hname %></span>
+			</div>
+			<div class="col-md-4">
+				<span class="card-area-heading"> Location :</span>
+				<span class="card-area-font"><%= previous[i].loc %></span>
+			</div>
+		</div>
+		<div class="row">
+			
+		</div>
+		<div id="showpreviousowner<%=previous[i].bookingid%>" class="collapse">
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Cost :</span>
+					<span class="card-area-font">Rs. <%= previous[i].cost %> </span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Owner :</span>
+					<span class="card-area-font"><%= previous[i].name %></span>
+				</div>
+				<div class="col-md-4">
+					<span class="card-area-heading">Resort Contact Number :</span>
+					<span class="card-area-font"><%= previous[i].mno %></span>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<span class="card-area-heading">Owner Mail ID :</span>
+					<span class="card-area-font"><%= previous[i].mail %></span>
+				</div>
+				<div class="col-md-8">
+					<span class="card-area-heading">Resort Address :</span>
+					<span class="card-area-font"><%= previous[i].address %></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<span><button type="submit" class="viewbtn btn-main btn-non-imp" data-toggle="collapse" data-target="#showpreviousowner<%=previous[i].bookingid%>">View More >></button></span>
+</div>
+		
+	<% } %>
+	<% if(count==0){ %>
+	<div class="card">
+	<p> No bookings found</p>
+	</div>
+	<% } %>
+	</div>
+<% } %>
+<% } %>
+
+</div>
+</div>
+<% } %>
+<% include footer.html %>
+</body>
+</html>

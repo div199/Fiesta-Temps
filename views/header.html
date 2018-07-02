@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<head>
+
+  <script type="text/javascript" src="/static/scripts/style.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/styles/modal.css">
+
+
+</head>
+<header>
+<nav class="navbar-main">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a href="/app/home" style="font-family:'Raleway', sans-serif;"><img src="/static/images/logo.png" id="logo"></a>      
+        </div>
+      </div>
+      <div class="col-md-5"></div>       
+      <div class="col-md-5" style="padding-left: 1%">
+        <div id="tab-content">
+          <ul  class="nav navbar-nav navbar-right">
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <% if(!currentUser || currentUser.rolename=='customer'){ %>
+              <li><a href="#becomeHost" data-toggle="modal">Become a Host</a></li>
+              <% } %>
+              <li><a href="/app/gallery">Gallery</a></li>
+              <%if(!currentUser){%>
+                <li><a href="#login" data-toggle="modal">Login</a></li>
+                <li><a href="#signup"  data-toggle="modal">Sign-up</a></li>
+              <%}else{%>
+              
+                
+                <% if(currentUser && currentUser.rolename!='admin'){ %>
+                    <li><a href="/app/user/bookings">My Bookings</a></li>
+                    <% } %>
+                    <% if(currentUser && currentUser.rolename=='owner'){ %>
+                    <li><a href="/app/resort/bookings">My Resort Bookings</a></li>
+                    <% } %>
+                     <%if(currentUser && currentUser.rolename=='admin'){%>
+                     <li><a href="/app/admin/listuser">All Users</a></li>
+                     <li><a href="/app/admin/listresort">All Resorts</a></li>
+                     <% } %>
+                     <li>
+                <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span><i class="material-icons">account_circle</i></span>
+                  <span class="caret"></span>
+                </a>                   
+                  <ul class="dropdown-menu dropdown-remove-border" style="max-width: 150px">
+                    <li style="padding-left: 12%;padding-bottom: 5%;font-weight: bold; font-size: 15px"> Hi <%= currentUser.name %> ! </li>
+                    
+                    
+                    <%if(currentUser && currentUser.rolename=='admin'){%>
+                    <li><a href="/app/admin/showNotification">Notifications</a></li>
+                    
+                    
+                    <%}%>
+
+                    <li class="dropdown-menu-li" style="border-top: 1px solid rgba(0,0,0,0.2);padding-bottom: 5%;  padding-top: 5%;  width:160px;"><a href="/app/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </div>
+                  </ul>
+                  </div>
+                  </li>
+                  
+              <%}%>
+            </div>
+          </ul>
+         </div>
+        </div>
+      </div>
+    </div>
+  </nav>  
+</header>
+
+
+
+
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+  
+    <div class="modal-content">
+      <div class="modal-header">
+      
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login </h4>
+      </div>
+      <div class="modal-body">
+      <h3>Already registered? Just Sign-in...</h3>
+      <form role="form" data-toggle="validate" method="POST" action="/app/login"> 
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Enter your E-mail" name="email" data-error="Invalid E-mail address" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Enter your pasword" name="password" required>
+        </div>
+        <!-- Login button -->
+        <br>
+        <button type="submit" class="btn btn-success btn-block" >Log-in</button><br>
+        <a href="#" text-align="center">Forgot Password?</a>
+        
+      </div>
+     </form> 
+
+      <div class="modal-footer">
+        Not Registered yet? <a href="#" data-toggle="modal" data-target="#signup" data-dismiss="modal" style="color: blue">Sign Up</a> for free.
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Login ends -->
+<!-- Sign up-->
+
+ 
+  <div class="modal fade" id="signup" role="dialog"><br><br><br>
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sign-Up</h4>
+        </div>
+      
+            <div class ="container-signup">
+            <br>
+            <form method="post" action="/app/signup">
+            <div class="row">
+              <div class="col-xs-4">
+                <input type="text" class="form-control" name="fname" placeholder="Firstname" required>
+              </div>
+              <div class="col-xs-4">
+                <input type="text" class="form-control" name="lname" placeholder="Lastname" required>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Address" name="addr">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter current City" name="loc" required>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">
+                <input type="tel" class="form-control" maxlength="4" name="std" placeholder="STD-Code" value="+91" required>
+              </div>
+              <div class="col-xs-4">
+                <input type="tel" class="form-control" maxlength="10" id="mno" name="mno" placeholder="Mobile Number" required>
+              </div></div>
+              <br>
+            <div class="form-group">
+            <input type="email" class="form-control" placeholder="Enter E-mail" name="mail" data-error="Invalid e-mail address" required>
+            </div> 
+            <div class="form-group">
+          <input type="password" class="form-control" placeholder="Enter password" name="passsignup" id="passsignup" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Re-Enter pasword" name="passsignup2" 
+         id="passsignup2" onkeyup="matchPassword()" required><span id="icon-pass-signup"></span>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success btn-block" onclick="checkForm()" >Sign-Up</button><br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          Already Registered? <a href="#" data-toggle="modal" data-target="#login" data-dismiss="modal" style="color: blue">Login</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Sign-up ends-->
+  
+  <!-- Become a Host Modal -->
+  
+  <div class="modal left fade" id="becomeHost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Become A Host</h4>
+        </div>
+
+        <div class="modal-body">
+           <div class="scrollbar" id="style-2">         
+<form action="/app/becomehost" method="POST">
+  <div class="form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control" name="uname" required>
+  </div>
+    <div class="form-group">
+    <label >E-mail:</label>
+    <input  type="email" class="form-control" name="email" required>
+  </div>
+  <div class="form-group" >
+    <label >Mobile:</label>
+    <input type="tel"  maxlength="10" class="form-control" name="mobile" required>
+  </div>
+  <div class="form-group">
+    <label>Resort Name:</label>
+    <input type="text" class="form-control" name="rname" required >
+  </div>
+   
+   <div class="form-group">
+      <label >Description(MAX-100words)</label>
+      <textarea class="form-control" rows="5" name="description" required></textarea>
+    </div>
+   
+  
+  
+  <button type="submit" class="btn btn-success form-control">Submit</button>
+  </form>
+  <div class="row" style="margin-top: 20%">
+    <p>&nbsp&nbsp &nbsp&nbsp&nbsp&nbspThank you for choosing Fiesta Temps !</p>
+    <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp We will contact you soon </p>
+  </div>
+   </div>
+           
+        </div>
+        <div class="modal-footer">
+          Already a Host? Just <a href="#login" data-toggle="modal" data-dismiss="modal" style="color: blue"> Log-in </a> .
+        </div>
+
+      </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+  </div><!-- modal -->
+ 
+
+

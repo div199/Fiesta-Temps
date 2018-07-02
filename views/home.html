@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fiesta Temps</title>
+  <%include commonHeadElements.html%>
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+<link rel="stylesheet" type="text/css" href="/static/styles/newhome.css">
+</head>
+
+<body>
+<% include header.html %>
+<% if(errorMessage){ %>
+<p class="font-warning"><%=errorMessage%></p>
+<% } %> 
+<div class="top" style="background-image: url(/static/images/div.jpg);background-position: center;background-repeat: no-repeat">
+  <div class="search">
+    <h1 class="heading-top">Fiesta Temps</h1>
+    <h2 class="small-heading-top">Biggest Resort Booking Website of Mathura</h2>
+    <br><br>
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3"></div>
+      <div class="col-md-5 col-sm-5 col-xs-5" >
+        <div style="display: inline; float: left;margin-bottom: 2%;">
+          <button class="btn " type="submit" id="search_by_date" style="border-bottom-color: red;color:black;font-size: 18px">Search By Date</button>
+          <button class="btn " type="submit" id="search_venue" style="color: black;font-size: 18px">Search a Venue</button>
+        </div>
+      </div>
+    <div class="col-md-4 col-sm-4 col-xs-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 col-sm-3 col-xs-3"></div>
+      <form action="/app/searchbydate" method="post" id="dateform">
+        <div class="col-md-5 col-sm-5 col-xs-5">
+          <div style="display: inline;">
+             <input type="Date" class="search-query form-control" placeholder="Search" id="date_control" name="searchdate" required/>
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <button class="btn btn-submit" type="submit" id="datebutton" >Search</button>
+        </div>
+      </form>
+      <div class="col-md-3 col-sm-3 col-xs-3"></div>
+      <div class="col-md-3 col-sm-3 col-xs-3"></div>
+      <form action="/app/searchbyvenue" method="post" id="nameform">
+        <div class="col-md-5 col-sm-5 col-xs-5">
+          <div style="display: inline;">
+            <input type="text" class="  search-query form-control" placeholder="Enter Resort Name" id="name" name="rname" style="display:none" required/>
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+          <button class="btn btn-submit " type="submit" id="venuebutton"  style="display: none;" required>Search</button>
+        </div>
+      </form>
+      <div class="col-md-3 col-sm-3 col-xs-3"></div>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+
+<% if(trending){ %>
+<h3 class="small-heading">Trending Resorts</h3>
+
+<% } %>
+
+
+<div class="row">
+  <%for(var i in trending ){%>
+    <% if(i<6){ %>
+    
+      <div class="col-md-4">
+        <div class="thumbnail" style="font-family: 'Raleway',sans-serif; margin-left:5%">
+          <a href="/app/resort/<%=trending[i].rid%>">
+          
+            <img src="<%= trending[i].url %>" alt="Brizwasi Resort" style="height:180px">
+          </a>
+            <div class="caption" style="margin-left: 10%">
+           <a href="/app/resort/<%=trending[i].rid%>" style="text-decoration: none"><p style="font-size: 18px;color: #d50000"><%=trending[i].rname%></p></a>
+              <div class="row">
+                <div class="col-md-6">
+                  
+                  <p>Number of Halls : <%=trending[i].nhalls%></p>
+                  <p>Location :<%=trending[i].loc%></p>
+                </div>
+                <div class="col-md-6" >
+                  <a href="/app/resort/<%=trending[i].rid%>" >
+                    <button class="btn-main btn-imp">Know More >></button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+
+    <% } %>
+  <%}%>
+  </div>
+
+
+
+
+<div>
+<% if(gallery){ %>
+<h3 class="small-heading">Our Gallery</h3>
+
+</div>
+<div class="row">
+<%for(var i in gallery ){%>
+<% if(i<3){ %>
+
+<div class="col-md-3">
+
+ <div class="thumbnail" style="margin-left:10%;font-family: 'Raleway',sans-serif">
+      <a href="/app/resort/<%=gallery[i].rid%>">
+        <img src="<%= gallery[i].url %>" alt="<%= gallery[i].rname %>" style="height: 180px">
+      </a>
+      <div class="caption" >
+        <p style="font-size: 15px;text-align: center;"><%=trending[i].rname%></p>
+      </div>
+      
+    </div>
+</div>
+<% } %>
+<%}%>
+<div class="col-md-3">
+<div class="thumbnail" style="border: none">
+<a href="/app/gallery">
+  <button class="btn-main btn-non-imp" id="homeWayToGalleryButton">Way To Gallery  >></button></a>
+</div>
+</div>
+</div>
+
+<% } %>
+
+<h3 class="small-heading">Still Confused ?</h3>
+<h3 class="small-heading"><a href="#becomeHost" data-toggle="modal" ><button class="btn-main btn-non-imp" style="outline: none">Click here to be a Host</button></a></h3>
+
+
+
+
+
+
+
+
+
+
+<script>  
+$(document).ready(function(){  
+    $("#search_by_date").click(function(){  
+        $("#date_control,#datebutton").show();  
+        $("#name,#venuebutton").hide();
+  $("#search_by_date").css("border-bottom-color", "red" ); 
+  $("#search_by_date").css("border-bottom-width", '1px' ); 
+ 
+ $("#search_venue").css("border-bottom-color", "transparent" ); 
+ 
+    });  
+});  
+
+$(document).ready(function(){  
+    $("#search_venue").click(function(){  
+        $("#name,#venuebutton").show();
+          $("#date_control,#datebutton").hide(); 
+
+
+     $("#search_venue").css("border-bottom-color", "red" ); 
+     $("#search_venue").css("border-bottom-width", '1px' ); 
+     
+$("#search_by_date").css("border-bottom-color", "transparent" ); 
+
+    });  
+});  
+
+</script>  
+
+
+
+
+
+
+
+<%include footer.html%>
+  </body>
+</html>

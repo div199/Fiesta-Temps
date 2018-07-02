@@ -1,0 +1,285 @@
+.search-page{
+    background-color: white;
+    z-index:100;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 10px;
+}
+.list{
+     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:200px;
+
+}
+.list:hover{
+    box-shadow: 0 7px 7px 0 rgba(0,0,0,0.2);
+}
+
+.image-search-container{
+    width:300px;
+    height:198px;
+}
+#content-display-search{
+    padding-left: 10%;
+}
+.container-fluid-search{
+    background-image: url(/static/images/Capture.Png);
+    background-repeat: no-repeat;
+     height: 10%;
+     background-color: #F8F8F8;
+}
+
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        margin-top: 15px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+        margin-top: 15px;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+    .container1 {
+    border: 2px;
+    background-color: #eee;
+    border-radius: 2px;
+    padding: 1%;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0;
+}
+
+
+
+.container1 {
+     width: 85%; 
+}
+
+/* Clear floats after containers */
+.container1::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+.container1 img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 0;
+    
+}
+
+/* Increase the font-size of a span element */
+.container1 span {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* Add media queries for responsiveness. This will center both the text and the image inside the container */
+
+body{font-family:'Open Sans',sans-serif}.icon-shopping-cart{font-size:15px}textarea{resize:none}.componentHeader{margin-bottom:12px!important}a.color-blue{cursor:hand;cursor:pointer}p.errorMessage{color:#f00;margin-bottom:0;margin-top:10px;font-size:15px}.red-border{border:1px solid #f00}ul.icons-ul{margin-left:0;padding-left:0}ul.icons-ul li i{margin-right:5px}.width-5{width:5%}.width-10{width:10%}.width-15{width:15%}.vertical-middle{vertical-align:middle!important}table.vertical-middle td{vertical-align:middle!important}.disable-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.hand-icon{cursor:hand;cursor:pointer}.adminMenu{list-style:none;padding:0;margin-bottom:0;background:#1a485b}.adminMenu li{display:inline-block}.adminMenu li a{display:inline-block;padding:10px 25px;color:#fff;text-decoration:none}.adminMenu li.active{background:#fff}.adminMenu li.active a{color:#1a485b}.table-colored-header thead{background-color:#1a485b;color:#fff}.table-colored-header th{vertical-align:middle}.table-colored-header td{vertical-align:middle!important}.table-colored-header tr.selected td{background:#f9f9f9}.page-header{text-align:center;padding:20px;margin-top:0}.page-header h1{color:#1a485b}.topBarButtons{position:relative;top:-3px}.topBarButtons a{margin-left:8px;font-weight:bold;padding-left:8px!important}.topBarButtons a span{margin-left:8px}.modal-form .form-row{margin-top:15px}.selectBox{padding:5px;border:1px solid #DDD;width:100%}.addEditLink{color:#1a485b}.btn-u{background:#fff;border:2px solid #1a485b;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:bold;color:#1a485b}.theme-background-color{background:#1a485b!important}.color-white{color:#fff!important}.theme-text-color{color:#1a485b}.headline h2,.headline h3,.headline h4{border-bottom:2px solid #1a485b}.modal-title{text-align:center;color:#1a485b;font-weight:bold;font-size:28px}.modal-footer .btn-u{padding:6px 40px}.modal-footer .btn-u:first-child{margin-right:10%}.btn-u:hover{background:#1a485b}tr.text-center th,tr.text-center td{text-align:center}.input-group-addon{background-color:transparent}.error{border-color:#f00}.product-list-tile{border:1px solid #eee;padding:10px;margin-bottom:20px}.product-list-tile .image-container{width:144px;height:108px;float:left}.product-list-tile .image-container img{width:100%}.product-list-tile .product-details{display:inline-block}.product-list-tile .product-details h2{font-size:22px;margin-top:0}.product-list-tile .product-details .product-description{width:500px}.product-list-tile .price-container{font-size:20px}.product-list-tile .user-details{font-size:15px}
+
+@media (max-width: 600px) {
+  .container1 {
+    text-align: left;
+  }
+
+  .container1 img {
+    
+    float: none;
+    display: block;
+  }
+}
+@media screen and (min-width: 770px) and (max-width: 990px){
+   #content-display-search{
+    padding-left: 40%;
+} 
+.image-search-container{
+   width:185px;
+   height:198px;
+   display: block;
+}
+.list{
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:auto;
+}
+}
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+    .list{
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height:200px;
+}
+ #content-display-search{
+    padding-left:8%;
+} 
+.search-page{
+    background-color: white;
+    z-index:100;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 10px;
+}
+}
+@media screen and (max-width:769px){
+    .search-page{
+    background-color: white;
+    z-index:100;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 10px;
+}
+.list{
+     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:200px;
+   }
+.image-search-container{
+   display: none;
+}
+#content-display-search{
+    padding-left: 0;
+}
+}
+@media screen and (min-width: 260px) and (max-width: 769px){
+    .list{
+         box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:auto;
+    }
+     #content-display-search{
+    padding-left: 10%;
+} 
+}
+@media screen and (min-width: 991px) and (max-width: 991px){
+     #content-display-search{
+    padding-left: 40%;
+} 
+.list{
+         box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:200px;
+    } 
+}
+@media screen and (min-width: 997px) and (max-width: 999px){
+     #content-display-search{
+    padding-left: 10%;
+}
+ .list{
+         box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:200px;
+    } 
+    .search-page{
+    background-color: white;
+    z-index:100;
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 10px;
+}
+
+}
+@media screen and (min-width: 992px) and (max-width: 996px){
+     #content-display-search{
+    padding-left: 10%;
+} 
+.list{
+         box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+  transition-duration: 0.5s;
+  text-align: left;
+    border: 1px solid #D0D0D0;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height:200px;
+    } 
+    
+}

@@ -1,0 +1,104 @@
+Prashant Agrawal 
+
+
+1:= DATABASE CHANGES-:
+  
+  i have made notification table extra.
+
+
+
+mysql> use eventcal;
+Database changed
+mysql> create table notification(name varchar(20),email varchar(30),mobile int(1
+0),resort_name varchar(20),description varchar(100));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_eventcal |
++--------------------+
+| hall               |
+| hallbooking        |
+| media              |
+| notification       |
+| resort             |
+| role               |
+| user               |
+| userrole           |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc notification;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| name        | varchar(20)  | YES  |     | NULL    |       |
+| email       | varchar(30)  | YES  |     | NULL    |       |
+| mobile      | int(10)      | YES  |     | NULL    |       |
+| resort_name | varchar(20)  | YES  |     | NULL    |       |
+| description | varchar(100) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.07 sec)
+
+
+2:=APP ROUTES CHANGES:->
+
+     router.get('/becomehost',adminCtrl.addModalPage);
+    router.post('/modal', bodyParser,adminCtrl.addModal);
+    router.get('/admin/notification',adminCtrl.notification);
+    router.get('/admin/showNotification',adminCtrl.showNotification);
+
+
+
+
+3:=IN ADMIN CONTROLLER:->
+
+   addModalPage: function*(next){
+		yield this.render('modal');
+	},
+
+
+
+    addModal: function* (next) {
+        var name=this.request.body.uname;
+        var mail=this.request.body.email;
+        var mobile=this.request.body.mobile;
+        var rname=this.request.body.rname;
+        var desc=this.request.body.description;
+        var query,queryString;
+        this.body="name is:"+name+mail+mobile+rname+desc;
+       
+        queryString="insert into notification(name,email,mobile,resort_name,description) values('%s','%s','%s','%s','%s')";
+        query=util.format(queryString,name,mail,mobile,rname,desc);
+        yield databaseUtils.executeQuery(query);
+        var redirectUrl='/app/home';
+        this.redirect(redirectUrl)
+      
+},
+  notification: function*(next){
+		var queryString="Select * from resort";
+		var results=yield databaseUtils.executeQuery(queryString);
+		yield this.render('allresorts',{
+			resorts:results
+		});
+	},
+showNotification: function*(next){
+	var queryString="Select * from  notification";
+		var results=yield databaseUtils.executeQuery(queryString);
+		yield this.render('notification',{
+			notification:results
+		});
+		},
+
+
+
+REST CHANGES ARE IN PRATISHTHA's LAPTOP
+   ->1:add user
+   ->2:add resort
+
+
+
+
+
+
+

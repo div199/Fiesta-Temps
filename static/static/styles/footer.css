@@ -1,0 +1,43 @@
+
+
+ .nim li{
+ 	margin-top: 4%;
+
+ }
+.mar{
+	margin-right: 1%;
+}
+
+.nim a{
+	text-decoration: none;
+	color:black;
+	
+}
+.nim a:hover{
+font-weight: bold;
+}
+@media only screen
+   and (min-device-width : 300px)
+   and (max-device-width : 1200px){
+   	.foo li{
+  padding-left: 20%;
+   	}
+   
+.dis{
+	display: none;
+}
+.dis h4{
+	top: 5%;
+}
+.nim span{
+	margin:auto;
+}
+}
+
+.colmd span{
+	color: gray;
+	padding-left: 2px;
+}
+.border_line{
+	border-left: 1px solid #DBDBDB;"
+}

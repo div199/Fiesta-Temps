@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>All Resorts</title>
+  <% include commonHeadElements.html %>
+  <link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+  <link rel="stylesheet" type="text/css" href="/static/styles/allresort.css">
+</head>
+
+<body>
+  <% include header.html %>
+  
+<% if(!currentUser){ %>
+<p class="font-warning">Sorry !! You are not logged in.</p>
+<% } else if(currentUser.rolename!='admin'){ %>
+<p class="font-warning">Sorry !! You are not authorised for this page.</p>
+<% }else{ %>
+  <div style="font-family:'Raleway', sans-serif;">
+    <div class="container-fluid container-fluid-search">
+      
+      <div class="clearfix search-page" >
+        
+        <h3 style="font-weight: bold">All Resorts with Us
+        <a href="/app/admin/resort/addnew"><button class="btn-main btn-non-imp pull-right">Add Resort</button></a></h3>
+       
+        <hr>
+        <% for(var i in resorts){ %>
+          <div class="list">
+            <div class="row">
+              <div class="col-md-4 col-sm-1 col-xs-1">
+                <a href="/app/gallery/<%= resorts[i].rid %>">
+                  <img src="<%= resorts[i].url %>" alt="<%= resorts[i].rname %>" class="image-search-container">
+                </a>
+              </div>
+              <div class="col-md-8 col-sm-11 col-xs-11" id="content-display-search">
+                <a href="/app/resort/<%= resorts[i].rid %>" style="text-decoration: none"><h3 style="color: #B22222;"> <%= resorts[i].rname %> </h3></a>
+                <div class="row">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                    
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                     
+                  </div>
+                </div>
+                
+               
+                
+                  <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                    <p><span style="font-weight: bold">Location :</span><%= resorts[i].resortaddress %></p>
+                    <% if(ratings){ %>
+                    <p><span style="font-weight: bold">Ratings :</span>
+                  <% var ratings= resorts[i].rating %>
+                  <% for(var j=0;j<ratings;j++){ %>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <% }} %>
+               <p style="margin-top: 1%">              
+            <% if(resorts[i].ac==1){ %>
+            <span class="label label-danger">AC</span>
+            <% } %>
+            <% if(resorts[i].parking==1){ %>
+            <span class="label label-danger">Parking Area</span>
+            <% } %>
+            <% if(resorts[i].wifi==1){ %>
+            <span class="label label-danger">WiFi</span>
+            <% } %>
+            <% if(resorts[i].DJ==1){ %>
+            <span class="label label-danger">DJ & music</span>
+            <% } %>
+            <% if(resorts[i].nonveg==1){ %>
+            <span class="label label-danger">Non-veg</span>
+            <% } %>
+            <% if(resorts[i].liquor==1){ %>
+            <span class="label label-danger">Liquor License</span>
+            <% } %>
+            <% if(resorts[i].flowerdecor==1){ %>
+            <span class="label label-danger">Flower Decorations</span>
+            <% } %>
+            <% if(resorts[i].catering==1){ %>
+            <span class="label label-danger">In-House Catering</span>
+            <% } %>
+            <% if(resorts[i].rooms==1){ %>
+            <span class="label label-danger">Rooms for Stay</span>
+            <% } %>
+            </p>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                    <p><span style="font-weight: bold">Number of Halls :</span><%= resorts[i].nhalls %></p>
+                    <a href="/app/admin/resort/<%= resorts[i].rid %>/update"><p>
+                      <button class="btn-main btn-imp">Update</button></p>
+                      </a>
+                    <p>
+                      <button class="btn-main btn-non-imp" data-toggle="modal" data-target="#removeModal<%= resorts[i].rid %>">Remove</button></p>
+                      </a>
+                    </div>
+                  </div>
+           
+            
+            
+            
+                
+              </div>
+        </div>
+      </div>
+      <div id="removeModal<%= resorts[i].rid %>" class="modal fade" role="dialog" style="top:40%">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p>Are you sure you want to remove the <%= resorts[i].rname %> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-main btn-imp" data-dismiss="modal" style="padding-left: 5%;padding-right: 5%">No</button>
+        <a href="/app/admin/resort/<%= resorts[i].rid %>/remove" >
+        <button type="button" class="btn-main btn-non-imp" style="padding-left: 5%;padding-right: 5%">Yes</button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+      
+      <% } %>
+                
+  
+</div>  
+</div> 
+</div>
+
+  
+  
+
+  
+
+<% } %>
+
+
+  <% include footer.html %>
+ 
+</body>
+</html>

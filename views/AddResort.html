@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Resort</title>
+<% include commonHeadElements.html %>
+
+<link rel="stylesheet" type="text/css" href="/static/styles/stylebookings.css">
+<script>
+   function chooseFile() {
+      document.getElementById("fileInput").click();
+   }
+</script>
+<script >
+	$(document).ready(function () {
+  //$('.group').hide();
+ // $('#option1').show();
+
+  $('#selectMe').on('change',function () {
+     
+   var no= $(this).val();
+   console.log(no);
+    $('#hallDynamic').html('');	
+    for(var i=0; i<no; i++){
+    	console.log(i);
+ 
+    $('<div></div>').html('<div class="row" style="margin-top: 2%"><div class="col-md-4"><span class="card-area-heading"> Hall Name :</span><input type="text" name="Hname'+i+'" required  placeholder="Name of Hall"  class="form-control"></div><div class="col-md-4"><span class="card-area-heading"> Hall Capacity :</span><input type="number" name="Hcap'+i+'" placeholder="Capacity" required  class="form-control"></div><div class="col-md-4"><span class="card-area-heading"> Hall Cost :</span><input type="number" name="Hcost'+i+'"  placeholder="Cost" class="form-control" ></div></div><div style="margin-top: 2%;"> <h3 class="font-1">Upload Images Of Hall:</h3>  <div> <input            type="file" name="myFile" required> </div></div>').appendTo('#hallDynamic');
+     	
+	 }
+  });		
+});
+</script>
+</head>
+<body>
+<% include header.html %>
+<% if(errorMessage){ %>
+<p class="font-warning"><%= errorMessage %></p>
+<% } %>
+<% if(!currentUser){ %>
+<p class="font-warning">Sorry !! You are not logged in.</p>
+<% } else if(currentUser.rolename!='admin'){ %>
+<p class="font-warning">Sorry !! You are not authorised for this page.</p>
+<% }else{ %>
+<div style="margin-right: 5%;margin-left: 5%">
+<div class="container-booking">
+<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-6">
+		<h1 class="font-1">Add a Resort Here</h1>
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-6"><a href="/app/admin/listresort"><button class="btn-main btn-imp pull-right">Cancel</button></a></div>
+</div>
+	
+	
+	<form id='resort-form' method="post" action="/app/admin/resort/addnew" enctype="multipart/form-data">
+
+	<h3 class="font-1">Details of the Resort :</h3>
+	<div class="row">
+		<div class="col-md-4">
+			<span class="card-area-heading">Name :</span>
+			<input type="text" name="Rname" placeholder="Name of Resort" class="form-control"  required >
+		</div>
+		<div class="col-md-4">
+			<span class="card-area-heading">Tel No. :</span>
+			<input type="tel" name="MnoR" maxlength="11" class="form-control" placeholder="Contact number of Resort" required  >
+		</div>
+		<div class="col-md-4">
+		    <span class="card-area-heading">Mobile :</span>
+			<input type="tel" name="Mno" maxlength="10" placeholder="Contact number of Owner" class="form-control"  required  >
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<span class="card-area-heading">City :</span>
+			<input type="text" name="Location" placeholder="Enter city of Resort" class="form-control" required >
+		</div>
+		<div class="col-md-4"></div>
+		<div class="col-md-4"></div>
+	</div>
+	<div class="row">
+        <div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Address :</span>
+			<textarea class="form-control" name="Address" placeholder="Address here.." rows="4"></textarea required >
+		</div>
+		<div class="col-md-6"></div>
+	</div>
+	<div class="row">
+        <div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Description :</span>
+			<textarea class="form-control" name="Description" placeholder="Description here.." rows="4"></textarea required >
+		</div>
+		<div class="col-md-6" style="margin-top: 2%">
+			<span class="card-area-heading">Tagline :</span>
+			<input type="text" name="Tagline" placeholder="Tagline for Resort" class="form-control"  >
+		</div>
+	</div>
+	<div  style="margin-top: 2%">
+			<span class="card-area-heading">Terms & Conditions :</span>
+			<textarea class="form-control" name="Conditions" placeholder="Description here.." rows="4"></textarea >
+		</div>
+	<div class="row" style="margin-top: 2%">
+		<div class="col-md-4">
+			<span class="card-area-heading"> Owner's Name :</span>
+			<input type="text" name="Oname" placeholder="Name of Owner" class="form-control" required >
+		</div>
+		<div class="col-md-5">
+			<span class="card-area-heading"> Owner's E-mail :</span>
+			<input type="email" name="Omail" placeholder="E-mail ID of Owner" class="form-control" required >
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+	<div style="margin-top: 2%;">
+	 <h4 class="font-1">Services :</h4>
+
+	      <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="wifi" value="wifi">
+          Wifi</label>
+     
+           <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Parking" value="Parking">
+          Parking-Area</label>
+    
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="AC" value="AC">
+          AC</label>
+      
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="NonVeg" value="Non-Veg">
+          Non-Veg</label>
+     
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Music" value="Music">
+          DJ & Music</label>
+      
+         <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Liquor" value="Liquor">
+          Liquor-License</label>
+     
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Flower" value="Flower">
+          Flower-Decoration</label>
+     
+         <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="InCatering" value="In-Catering">
+          In-House Catering</label>
+     
+          <label class="checkbox-inline card-area-font">
+          <input type="checkbox" id="coding" name="Rooms" value="Rooms">
+          Rooms For Stay</label>
+    </div>
+    
+	
+
+	<div style="margin-top: 2%;">
+	     <h4 class="font-1" style="display: inline; margin-right: 2%">Select No. Of Halls :</h4>
+	     <select class="form-control" id="selectMe" name="halls_number">
+	       <option value="0">Select a value</option>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>  
+           <option value="4">4</option>
+           <option value="5">5</option>
+          </select>
+    </div>
+    	<div id="hallDynamic"></div>
+    	
+<div class="row" style="margin-top: 2%">
+		<div class="col-md-3"></div>
+		<div class="col-md-3">
+			<button class="form-control btn btn-success" type="submit" value="Upload ">Submit</button>
+		</div>
+		
+		<div class="col-md-3">
+			<button class="form-control btn btn-warning" type="reset" >Reset</button>
+		</div>
+		<div class="col-md-3"></div>
+		
+	</div>
+	</form>	
+	</div>
+	</div>
+
+<% } %>
+	<% include footer.html %>
+</body>
+</html>

@@ -1,0 +1,74 @@
+.containerrr {
+  border: 2px solid #ccc;
+  background-color: #eee;
+  padding: 10px;
+  margin: 16px 5%;
+  
+}
+
+.containerrr::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.containerrr img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 10%;
+}
+
+.containerrr span {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+@media (max-width: 500px) {
+  .containerrr {
+      text-align: center;
+  }
+  .containerrr img {
+      margin: auto;
+      float: none;
+      display: block;
+  }
+}
+
+ 
+
+
+ .col-md-2{
+  padding: 0px 0px 0px 0px;
+  
+ }
+
+.fun{
+  width: 90%;
+  height:25px;background-color:#b3ff66;
+-webkit-transition:all 200ms ease-in;
+-webkit-transform: scale(1);
+
+}/*
+.fun:hover{
+  background-color: black;
+  z-index: 20;
+  -webkit-transition:all 200ms ease-in;
+-webkit-transform: scale(1.5);
+
+
+}*/
+
+.fun1{
+  height:25px;background-color:red;
+-webkit-transition:all 200ms ease-in;
+-webkit-transform: scale(1);
+
+}
+.fun1:hover{
+  background-color: blue;
+  z-index: 20;
+  -webkit-transition:all 200ms ease-in;
+-webkit-transform: scale(1.5);
+
+
+}

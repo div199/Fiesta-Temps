@@ -1,0 +1,81 @@
+var myBodyParser=require('koa-body');
+
+
+app.use(myBodyParser({
+  formidable:{uploadDir: './static/static/images/'},    //This is where the files would come
+    multipart: true,
+    urlencoded: true
+}));
+
+
+
+
+addResort: function*(){
+  
+		var resort=this.request.body.fields.Rname;
+    var mnor=this.request.body.fields.MnoR;
+    var mno=this.request.body.fields.Mno;
+    var location=this.request.body.fields.Location;
+    var address=this.request.body.fields.Address;
+    var oname=this.request.body.fields.Oname;
+    var omail=this.request.body.fields.Omail;
+    var number_of_halls=this.request.body.fields.halls_number;
+    var desc=this.request.body.fields.Description;
+    var tag=this.request.body.fields.Tagline;
+    
+     var queryString,query;
+       queryString="select * from user where mail='%s'";
+       query=util.format(queryString,omail);
+       console.log(query);
+       var result=yield databaseUtils.executeQuery(query);
+       console.log(result);
+       var errorMessage;
+       if (result.length<=0){
+       	console.log("USER_DID_NOT_EXISTS");
+         errorMessage= "User not found";
+         //errorMessage=constants.ERROR_MESSAGE.SIGNUP.USER_DID_NOT_EXISTS;
+         yield this.render('AddResort',{
+            errorMessage:errorMessage
+       });
+     }
+         else{
+    var uid=result[0].uid;
+      
+    var queryString="insert into resort (rname,loc,address,description,tagline,resortnumber,uid) values('%s','%s','%s','%s','%s','%s','%s')";
+    var query=util.format(queryString,resort,location,address,desc,tag,mnor,uid);
+    var results=yield databaseUtils.executeQuery(query);
+      console.log(results);
+
+    
+
+     //console.log("Files: ", this.request.body.files.myFile[0].name);
+     //console.log("Files: ", this.request.body.files.myFile[1].name);
+
+     for (var i=0;i<number_of_halls;i++)
+     {
+    	
+       var hallname=this.request.body.fields['Hname'+i];
+       var capacity=this.request.body.fields['Hcap'+i];
+       // var hallname=this.request.body.fields.Hname0;
+       // var capacity=this.request.body.fields.Hcap0;
+     console.log("Files: ", this.request.body.files.myFile[i].name);
+      var splt=this.request.body.files.myFile[i].path.split('\\');
+      var imagepath='/'+splt[1]+'/'+splt[2]+'/'+splt[3];
+      //console.log(imagepath);
+     
+       var filenew=this.request.body.files.myFile[i];
+       var type=filenew.type.split('/');
+       var cost=this.request.body.fields['Hcost'+i];
+        var queryString="insert into hall (rid,hname,capacity,cost) values('%s','%s','%s','%s')";
+        var query=util.format(queryString,results.insertId,hallname,capacity,cost);
+       var hallresults=yield databaseUtils.executeQuery(query);
+
+        queryString="insert into media (url,hallid,type) values('%s','%s','%s')";
+        query=util.format(queryString,imagepath,hallresults.insertId,type[0]);
+        console.log(query);
+        yield databaseUtils.executeQuery(query);
+
+     }
+    	
+}
+	},
