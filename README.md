@@ -1,10 +1,13 @@
 # [Fiesta Temps]
+A resort booking website made using Bootstrap accompanied with HTML,CSS,JavaScript, JQuery.
+Nodejs is used as the server side coding technology.
 
 To start this website's server you will need following system are required
 
 	- LINUX 64 bit
+	- Windows 10
 
-To start this website's server you will need following components to be installed on your linux machine
+To start this website's server you will need following components to be installed on your linux machine or Windows
 
 	- NODE.JS 6 or above
 	- NPM 4 or above
@@ -36,6 +39,6 @@ For any query contact me on
 
 [+91-9794413845](tel://+919794413845)
 
-# THANKS FOR READING
-# Find Project Report(.pdf) carrying Detail Info of the project.
+" THANKS FOR READING"
+ "Find Project Report(.pdf) carrying detail information of the project."
  
